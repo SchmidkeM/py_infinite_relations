@@ -1,0 +1,9 @@
+infinite_relations/__pycache__/
+infinite_relations/relations/__pycache__/
+infinite_relations/operations/__pycache__/
+infinite_relations/operations/derived/__pycache__/
+infinite_relations/utils/__pycache__/
+test/__pycache__/
+__pycache__/
+build/
+dist/

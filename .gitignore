@@ -6,8 +6,8 @@ infinite_relations/utils/__pycache__/
 test/__pycache__/
 __pycache__/
 .vscode/
+infinite_relations.egg-info/
 build/
 dist/
 setup.py
 sandbox.py
-infinite_relations.egg-info/

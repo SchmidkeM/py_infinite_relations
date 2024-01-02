@@ -1,6 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractclassmethod
 from ..utils.relational_schema import RelationalSchema
+from ..utils.list_operations import compare_lists_orderless
 from typing import Iterable
 
 
@@ -115,6 +116,21 @@ class Relation(ABC):
             member_list.append(next(members))
         return member_list
 
+    def can_be_member(self, tpl: dict) -> bool:
+        """Checks if a tuple is of the right type
+
+        Parameters
+        ----------
+        tpl : dict
+            Tuple to check
+
+        Returns
+        -------
+        bool
+            True, if tpl is of the right type
+        """
+        return compare_lists_orderless(self.get_schema(), list(tpl.keys()))
+
     def is_member(self, tpl: dict) -> bool:
         """Checks if a tuple is contained in the relation
 
@@ -131,6 +147,8 @@ class Relation(ABC):
         bool
             True, if tpl is contained in the relation
         """
+        if not self.can_be_member(tpl):
+            return False
         return tpl in self.members()
 
     def print(self, limit: int = 10_000) -> None:

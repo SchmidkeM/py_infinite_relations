@@ -41,9 +41,9 @@ class Selection(UnaryOperation):
         self.condition = condition
 
     def is_member(self, tpl):
-        return self.condition(
+        return self.get_original_relation().is_member(tpl) and self.condition(
             *dict_values(tpl, self.condition_param_names)
-        ) and super().is_member(tpl)
+        )
 
     def members(self):
         """Yields tuples from the original relation if they satisfy the condition"""

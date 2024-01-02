@@ -43,12 +43,11 @@ class IntegerRelation(Relation):
             yield dict_from_lists(self.get_schema(), [i])
             i += 1
 
-    def is_member(self, element: dict):
-        vals = list(element.values())
-        if len(vals) == 1:
-            val = vals[0]
-            return isinstance(val, int) and val >= 0
-        return False
+    def is_member(self, tpl: dict):
+        if not super().can_be_member(tpl):
+            return False
+        val = list(tpl.values())[0]
+        return isinstance(val, int) and val >= 0
 
 
 class GeneralIntegerRelation(Selection):
@@ -124,9 +123,9 @@ class AddRelation(Relation):
             i += 1
 
     def is_member(self, tpl: dict) -> bool:
-        vals = list(tpl.values())
-        if not len(vals) == 3:
+        if not super().can_be_member(tpl):
             return False
+        vals = list(tpl.values())
         for val in vals:
             if not isinstance(val, int):
                 return False
@@ -162,9 +161,9 @@ class EqualRelation(Relation):
         return False
 
     def is_member(self, tpl: dict) -> bool:
-        vals = list(tpl.values())
-        if not len(vals) == 2:
+        if not super().can_be_member(tpl):
             return False
+        vals = list(tpl.values())
         for val in vals:
             if not isinstance(val, int):
                 return False
@@ -189,9 +188,9 @@ class UnequalRelation(Relation):
         return False
 
     def is_member(self, tpl: dict) -> bool:
-        vals = list(tpl.values())
-        if not len(vals) == 2:
+        if not super().can_be_member(tpl):
             return False
+        vals = list(tpl.values())
         for val in vals:
             if not isinstance(val, int):
                 return False
@@ -250,7 +249,10 @@ class WordRelation(Relation):
         return False
 
     def is_member(self, tpl: dict) -> bool:
-        return len(tpl) == 1 and re.fullmatch(tpl[self.get_schema()[0]], r"[a-z]+")
+        if not super().can_be_member(tpl):
+            return False
+        val = list(tpl.values())[0]
+        return re.fullmatch(val, r"[a-z]+")
 
     def members(self):
         """Yields all possible words"""

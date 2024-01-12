@@ -2,23 +2,23 @@
 
 Constructor Functions
 ---------------------
-    list_relation(schema)
-    integer_relation(schema)
-    general_integer_relation(schema, condition)
+    list_relation(schema),
+    integer_relation(schema),
+    general_integer_relation(schema, condition),
     add_relation(schema)
 
 Basic Operations
 ----------------
-    union(left, right)
-    difference(left, right)
-    cross_join(left, right)
-    projection(relation, new_schema)
+    union(left, right),
+    difference(left, right),
+    cross_join(left, right),
+    projection(relation, new_schema),
     selection(relation, condition, condition_params)
 
 Derived Operations
 ------------------
-    intersection(left, right)
-    natural_join(left, right)
+    intersection(left, right),
+    natural_join(left, right),
     division(left, right)
 """
 from .relations.relation import Relation

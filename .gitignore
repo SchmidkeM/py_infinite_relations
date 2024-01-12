@@ -10,4 +10,3 @@ infinite_relations.egg-info/
 build/
 dist/
 setup.py
-sandbox.py

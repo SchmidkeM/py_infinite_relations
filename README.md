@@ -7,5 +7,7 @@ Can be installed with pip:
 
 **pip install** infinite-relations
 
-Main functionality is contained in *./infinite_relations* folder.
-It is provided in this repository along with tests and examples.
+Only the core functionality will be installed, no tests or examples.
+
+You can also run and *./examples.py* for a commented guide in console,
+or experiment in *./sandbox.py*.

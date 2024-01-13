@@ -129,25 +129,28 @@ class DerivedOperationsTest(unittest.TestCase):
         self.assertTrue(compare_relation_members(result, expected, 3))
 
     def test_division(self):
-        return
-        r1 = general_integer_relation(["num"], empty_cond)
-        r2 = list_relation(["char"], [{"char": "a"}, {"char": "b"}, {"char": "c"}])
-        r3 = cross_join(r1, r2)
-        r4 = list_relation(
-            ["num", "char"], [{"num": 2, "char": "b"}, {"num": 3, "char": "c"}]
-        )
-        r5 = difference(r3, r4)
+        names = [
+            "Dani",
+            "Emil",
+            "Franta",
+            "Martin",
+            "Karel",
+            "Standa",
+            "Rudolf",
+            "Tereza",
+        ]
+        subjects = ["math", "math", "math", "math", "english", "english"]
 
-        result = division(r5, r2)
-        expected = list_relation(
-            ["num"],
+        r1 = list_relation(
+            ["name", "subject"],
             [
-                {"num": 1},
-                {"num": 4},
-                {"num": 5},
-                {"num": 6},
-                {"num": 7},
+                {"name": name, "subject": sub}
+                for (name, sub) in zip(names[:4] + names[:2], subjects)
             ],
         )
+        r2 = list_relation(["subject"], [{"subject": "math"}, {"subject": "english"}])
 
-        self.assertTrue(compare_relation_members(result, expected, 5))
+        result = division(r1, r2)
+        expected = list_relation(["name"], [{"name": "Dani"}, {"name": "Emil"}])
+
+        self.assertTrue(compare_relation_members(result, expected, 2))
